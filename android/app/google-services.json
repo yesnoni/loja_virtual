@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "579106341002",
+    "project_id": "loja-virtual-c7693",
+    "storage_bucket": "loja-virtual-c7693.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579106341002:android:5cb7141e5c2eff45a1ed73",
+        "android_client_info": {
+          "package_name": "com.lojavirtualprodutosnaturais.gabrielly.loja_virtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579106341002-p5dqb00hnneof3tmusee9cvke1gi1pjg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVeTpb3MYPSCRe3oL9zvy_n6QQl2yEoJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579106341002-p5dqb00hnneof3tmusee9cvke1gi1pjg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
