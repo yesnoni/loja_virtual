@@ -1,0 +1,3 @@
+bool emailValid(String email){
+
+}
