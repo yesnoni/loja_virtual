@@ -6,17 +6,17 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'models/user_manager.dart';
 
-void main() async{
+Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  final Future<FirebaseApp> initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
-    return Provider(
+    return ChangeNotifierProvider(
       create: (_)=> UserManager(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
