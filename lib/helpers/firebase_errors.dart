@@ -21,6 +21,6 @@ String getErrorString(String code){
       return 'Operação não permitida.';
 
     default:
-      return 'Um erro indefinido ocorreu.';
+      return 'E-mail ou senha incorretos.';
   }
 }

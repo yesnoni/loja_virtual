@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/screens/base/base_screen.dart';
+import 'package:loja_virtual/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -22,6 +23,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'EcoShop',
         theme: ThemeData(
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              primary: const Color.fromARGB(255, 4, 125, 141),
+            )
+          ),
           primaryColor: const Color.fromARGB(255, 4, 125, 141),
           scaffoldBackgroundColor: const Color.fromARGB(250, 5, 124, 141),
           appBarTheme: const AppBarTheme(
@@ -29,6 +35,20 @@ class MyApp extends StatelessWidget {
           ),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        initialRoute: '/base',
+        onGenerateRoute: (settings){
+          switch(settings.name){
+            case '/signup':
+              return MaterialPageRoute(
+                  builder: (_) => SignUpScreen()
+              );
+            case '/base':
+            default:
+              return MaterialPageRoute(
+                  builder: (_) => BaseScreen()
+              );
+          }
+        },
         home: BaseScreen(),
 
       ),
