@@ -8,7 +8,7 @@ class SignUpScreen extends StatelessWidget {
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  final Usuario user = Usuario();
+  final Usuario user = Usuario.User();
 
   @override
   Widget build(BuildContext context) {
@@ -114,8 +114,7 @@ class SignUpScreen extends StatelessWidget {
                           context.read<UserManager>().signUp(
                             user: user,
                             onSuccess: (){
-                              debugPrint("Sucesso");
-                              //TODO: POP
+                              Navigator.of(context).pop();
                             },
                             onFail: (e){
                               scaffoldKey.currentState.showSnackBar(

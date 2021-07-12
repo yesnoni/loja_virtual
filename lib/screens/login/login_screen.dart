@@ -93,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                         onPressed: userManager.loading ? null:(){
                           if(formKey.currentState.validate()){
                             UserManager().signIn(
-                                usuario: Usuario(
+                                user: Usuario.User(
                                   email: emailController.text,
                                   password: passController.text,
                                 ),
@@ -106,7 +106,7 @@ class LoginScreen extends StatelessWidget {
                                   );
                                 },
                                 onSuccess:(){
-                                  // TODO: FECHAR TELA DE LOGIN
+                                  Navigator.of(context).pop();
                                 }
                             );
                           }

@@ -5,6 +5,7 @@ import 'package:loja_virtual/helpers/firebase_errors.dart';
 import 'package:loja_virtual/models/usuario.dart';
 
 
+
 class UserManager extends ChangeNotifier{
 
   UserManager(){
@@ -17,13 +18,15 @@ class UserManager extends ChangeNotifier{
   bool _loading = false;
   bool get loading => _loading;
 
+  bool get isLoggedIn => user != null;
 
-  Future<void> signIn({Usuario usuario, Function onFail, Function onSuccess}) async {
+
+  Future<void> signIn({Usuario user, Function onFail, Function onSuccess}) async {
     loading = true;
     try {
       final UserCredential result = await auth.signInWithEmailAndPassword(
-          email: usuario.email,
-          password: usuario.password
+          email: user.email,
+          password: user.password
       );
 
       await _loadCurrentUser(firebaseUser: result.user);
@@ -44,9 +47,9 @@ class UserManager extends ChangeNotifier{
       final UserCredential result = await  auth.createUserWithEmailAndPassword(
           email: user.email, password: user.password
       );
-
+      user.name = result.user.displayName;
       user.id = result.user.uid;
-      this.user = user as User;
+
 
       await user.saveData();
 
@@ -59,6 +62,12 @@ class UserManager extends ChangeNotifier{
     loading = false;
 
 
+  }
+
+  void signOut(){
+    auth.signOut();
+    user = null;
+    notifyListeners();
   }
 
   set loading(bool value){

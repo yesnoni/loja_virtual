@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Usuario{
 
-  Usuario({this.email, this.password, this.name, this.confirmPassword, this.id});
+  Usuario.User({this.email, this.password, this.name, this.confirmPassword, this.id});
 
   Usuario.fromDocument(DocumentSnapshot document){
 
