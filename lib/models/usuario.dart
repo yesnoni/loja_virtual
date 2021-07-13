@@ -7,8 +7,9 @@ class Usuario{
   Usuario.fromDocument(DocumentSnapshot document){
 
       id = document.id;
-      name = document.get(['name']) as String;
-      email = document.get(['email']) as String;
+      name = document.get(FieldPath([name])) as String;
+      email = document.get(FieldPath([email])) as String;
+
   }
 
   String id;

@@ -16,14 +16,14 @@ class CustomDrawerHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               const Text(
-                "Loja da \nGaby",
+                "EcoShop",
                 style: TextStyle(
                   fontSize: 34,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                "Olá, ${userManager.user?.email ?? " "}",
+                "Seja bem-vindo! ${userManager.user?.displayName ?? " "}",
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 style: const TextStyle(
