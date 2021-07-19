@@ -6,6 +6,7 @@ import 'package:loja_virtual/models/usuario.dart';
 
 
 
+
 class UserManager extends ChangeNotifier{
 
   UserManager(){
@@ -13,11 +14,11 @@ class UserManager extends ChangeNotifier{
   }
 
   final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   User user;
 
   bool _loading = false;
   bool get loading => _loading;
-
   bool get isLoggedIn => user != null;
 
 
@@ -29,7 +30,8 @@ class UserManager extends ChangeNotifier{
           password: user.password,
       );
 
-      await _loadCurrentUser(firebaseUser: result.user);
+     //await _loadCurrentUser(firebaseUser: result.user);
+      this.user = result.user;
 
       onSuccess();
 
@@ -47,7 +49,7 @@ class UserManager extends ChangeNotifier{
       final UserCredential result = await  auth.createUserWithEmailAndPassword(
           email: user.email, password: user.password
       );
-      user.name = result.user.displayName;
+
       user.id = result.user.uid;
 
 
@@ -75,14 +77,18 @@ class UserManager extends ChangeNotifier{
     notifyListeners();
   }
 
-  Future<void> _loadCurrentUser( {User firebaseUser} ) async {
-    final User currentUser = firebaseUser ?? auth.currentUser;
+  Future<void> _loadCurrentUser () async {
+    final User currentUser =  auth.currentUser;
+
     if (currentUser != null) {
-      final DocumentSnapshot docUser = await FirebaseFirestore.instance.collection('users').doc(currentUser.uid).get();
-      user = Usuario.fromDocument(docUser) as User;
+
+      final DocumentSnapshot docUser = await firestore.collection('users').doc(currentUser.uid).get();
+      user = Usuario.fromDocument(docUser);
 
 
       notifyListeners();
+
+
     }
 
   }

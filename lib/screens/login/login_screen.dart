@@ -54,6 +54,8 @@ class LoginScreen extends StatelessWidget {
                       validator: (email){
                         if( !emailValid(email)){
                           return "E-mail inválido";
+                        }else if (email.isEmpty){
+                          return "Insira o e-mail";
                         }else{
                           return null;
                         }
@@ -93,7 +95,7 @@ class LoginScreen extends StatelessWidget {
                         onPressed: userManager.loading ? null:(){
                           if(formKey.currentState.validate()){
                             UserManager().signIn(
-                                user: Usuario.User(
+                                user: Usuario(
                                   email: emailController.text,
                                   password: passController.text,
                                 ),

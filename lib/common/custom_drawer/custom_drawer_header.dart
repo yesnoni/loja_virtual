@@ -23,7 +23,7 @@ class CustomDrawerHeader extends StatelessWidget {
                 ),
               ),
               Text(
-                "Seja bem-vindo! ${userManager.user?.displayName ?? " "}",
+                "Seja bem-vindo! ${userManager.user?.email ?? " "} ",
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 style: const TextStyle(
@@ -40,7 +40,9 @@ class CustomDrawerHeader extends StatelessWidget {
                   }
                 },
                 child: Text(
-                  userManager.isLoggedIn ? "Sair" : "Entre ou cadastre-se",
+                  userManager.isLoggedIn
+                      ? 'Sair'
+                      : "Entre ou cadastre-se",
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 16,

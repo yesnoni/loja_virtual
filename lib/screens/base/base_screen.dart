@@ -9,7 +9,6 @@ class BaseScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Provider(
       create: (BuildContext context) => PageManager(pageController),
       child: PageView(
