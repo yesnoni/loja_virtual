@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/models/product_manager.dart';
 import 'package:loja_virtual/screens/base/base_screen.dart';
 import 'package:loja_virtual/screens/login/login_screen.dart';
 import 'package:loja_virtual/screens/signup/signup_screen.dart';
@@ -18,20 +19,22 @@ class MyApp extends StatelessWidget {
   final Future<FirebaseApp> initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_)=> UserManager(),
-      lazy: false,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserManager(), lazy: false,),
+        ChangeNotifierProvider(create: (_) => ProductManager(), lazy: false,)
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'EcoShop',
         theme: ThemeData(
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-              primary: const Color.fromARGB(255, 243, 143, 84),
+              primary: const Color.fromARGB(255, 46, 167, 76),
             )
           ),
-          primaryColor: const Color.fromARGB(255, 241, 136, 63),
-          scaffoldBackgroundColor: const Color.fromARGB(255, 250, 155, 77),
+          primaryColor: const Color.fromARGB(255, 54, 156, 69),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 39, 128, 64),
           appBarTheme: const AppBarTheme(
               elevation: 0
           ),
