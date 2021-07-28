@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/models/product.dart';
 import 'package:loja_virtual/models/product_manager.dart';
 import 'package:loja_virtual/screens/base/base_screen.dart';
 import 'package:loja_virtual/screens/login/login_screen.dart';
+import 'package:loja_virtual/screens/product/product_screen.dart';
 import 'package:loja_virtual/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
             )
           ),
           primaryColor: const Color.fromARGB(255, 54, 156, 69),
-          scaffoldBackgroundColor: const Color.fromARGB(255, 39, 128, 64),
+          scaffoldBackgroundColor: const Color.fromARGB(89, 12, 139, 64),
           appBarTheme: const AppBarTheme(
               elevation: 0
           ),
@@ -50,6 +52,12 @@ class MyApp extends StatelessWidget {
             case '/signup':
               return MaterialPageRoute(
                   builder: (_) => SignUpScreen()
+              );
+            case '/product':
+              return MaterialPageRoute(
+                  builder: (_) => ProductScreen(
+                    settings.arguments as Product
+                  )
               );
             case '/base':
             default:
