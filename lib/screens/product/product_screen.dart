@@ -17,6 +17,7 @@ class ProductScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      backgroundColor: Colors.white,
       body: ListView(
         children: [
           AspectRatio(
@@ -35,6 +36,7 @@ class ProductScreen extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.all(16),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   product.name,
@@ -51,6 +53,30 @@ class ProductScreen extends StatelessWidget {
                       color: Colors.grey[600],
                       fontSize: 13,
                     )
+                  ),
+                ),
+                const Text(
+                  "R\$19,99",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 16, bottom: 8),
+                  child: Text(
+                      "Descrição",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      )
+                  ),
+                ),
+                Text(
+                  product.description,
+                  style:const TextStyle(
+                    fontSize: 16,
                   ),
                 )
               ],
