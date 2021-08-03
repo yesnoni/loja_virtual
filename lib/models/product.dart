@@ -8,16 +8,20 @@ class Product{
     name = document['name'] as String;
     description = document['description'] as String;
     images = List<String>.from(document['images'] as List<dynamic>);
-    //retorna um itemsize vazio
-    sizes =  (document['sizes'] as List<dynamic> ?? []).map((s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
 
-    print(sizes);
+    //retorna um itemsize vazio
+    //sizes =  (document['sizes'] as List<dynamic> ?? []).map((s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
+    //sizes = List<String>.from(document['sizes'] as List<dynamic>);
+    print("oi");
+    //print(document['sizes']);
+    //print(ItemSize.fromMap(sizes));
   }
 
   String id;
   String name;
   String description;
   List<String> images;
-  List<ItemSize> sizes;
+  //List<String> sizes;
+
 
 }
