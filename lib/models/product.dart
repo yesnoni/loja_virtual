@@ -16,13 +16,11 @@ class Product{
     description = document['description'] as String;
     images = List<String>.from(document['images'] as List<dynamic>);
 
-
-
-
     //retorna um itemsize vazio
-    //sizes = (document.data as List<dynamic> ?? []).map((s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
-    //sizes = (document.data() as List<dynamic> ?? []).map((s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
-    //print(sizes);
+
+    sizes = (document['sizes'] as List<dynamic> ?? []).map((s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
+
+
 
   }
 
