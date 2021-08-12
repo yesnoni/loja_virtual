@@ -3,25 +3,30 @@ import 'package:loja_virtual/models/item_size.dart';
 
 class Product{
 
+  String id;
+  String name;
+  String description;
+  List<String> images;
+
+  List<ItemSize> sizes;
+
   Product.fromDocument(DocumentSnapshot document){
     id = document.id;
     name = document['name'] as String;
     description = document['description'] as String;
     images = List<String>.from(document['images'] as List<dynamic>);
 
+
+
+
     //retorna um itemsize vazio
-    //sizes =  (document['sizes'] as List<dynamic> ?? []).map((s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
-    //sizes = List<String>.from(document['sizes'] as List<dynamic>);
-    print("oi");
-    //print(document['sizes']);
-    //print(ItemSize.fromMap(sizes));
+    //sizes = (document.data as List<dynamic> ?? []).map((s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
+    //sizes = (document.data() as List<dynamic> ?? []).map((s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
+    //print(sizes);
+
   }
 
-  String id;
-  String name;
-  String description;
-  List<String> images;
-  //List<String> sizes;
+
 
 
 }
