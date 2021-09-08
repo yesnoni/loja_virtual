@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/models/cart_manager.dart';
 import 'package:loja_virtual/models/product.dart';
 import 'package:loja_virtual/models/product_manager.dart';
 import 'package:loja_virtual/screens/base/base_screen.dart';
+import 'package:loja_virtual/screens/cart/cart_screen.dart';
 import 'package:loja_virtual/screens/login/login_screen.dart';
 import 'package:loja_virtual/screens/product/product_screen.dart';
 import 'package:loja_virtual/screens/signup/signup_screen.dart';
@@ -24,7 +26,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserManager(), lazy: false,),
-        ChangeNotifierProvider(create: (_) => ProductManager(), lazy: false,)
+        ChangeNotifierProvider(create: (_) => ProductManager(), lazy: false,),
+        ProxyProvider<UserManager, CartManager>(create: (_) => CartManager(), update: (_, userManager, cartManager) =>
+        cartManager..updateUser(userManager),
+          lazy: false,),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -58,6 +63,10 @@ class MyApp extends StatelessWidget {
                   builder: (_) => ProductScreen(
                     settings.arguments as Product
                   )
+              );
+            case '/cart':
+              return MaterialPageRoute(
+                  builder: (_) => CartScreen()
               );
             case '/base':
             default:
