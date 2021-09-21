@@ -8,11 +8,13 @@ class CartManager{
 
   List<CartProduct> items = [];
   User user;
-
+  Usuario usuario;
+  //Usuario cartReference;
 
 
   void updateUser(UserManager userManager){
     user = userManager.user;
+    usuario = userManager.user as Usuario;
     items.clear();
 
     if (user != null){
@@ -21,7 +23,8 @@ class CartManager{
   }
   //busca os documentos em cart no banco
   Future<void> _loadCartItems()async{
-    final QuerySnapshot cartSnap = await user.cartReference.getDocuments() as QuerySnapshot<Object>;
+
+    final QuerySnapshot cartSnap = await usuario.cartReference.get();
 
     items = cartSnap.docs.map((d) => CartProduct.fromDocument(d)).toList();
   }
