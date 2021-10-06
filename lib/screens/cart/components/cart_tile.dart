@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/common/custom_icon_button.dart';
 import 'package:loja_virtual/models/cart_product.dart';
 
 class CartTile extends StatelessWidget {
@@ -23,6 +24,7 @@ class CartTile extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         cartProduct.product.name,
@@ -51,6 +53,26 @@ class CartTile extends StatelessWidget {
                     ],
                   ),
                 )
+            ),
+            Column(
+              children: [
+                CustomIconButton(
+                  iconData: Icons.add,
+                  color: Theme.of(context).primaryColor,
+                  onTap: cartProduct.increment,
+                ),
+                Text(
+                  '${cartProduct.quantity}',
+                  style: const TextStyle(
+                    fontSize: 20
+                  ),
+                ),
+                CustomIconButton(
+                  iconData: Icons.remove,
+                  color: Theme.of(context).primaryColor,
+                  onTap: cartProduct.decrement,
+                ),
+              ],
             )
           ],
         ),
