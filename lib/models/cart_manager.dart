@@ -26,7 +26,7 @@ class CartManager{
 
     final QuerySnapshot cartSnap = await usuario.cartReference.get();
 
-    items = cartSnap.docs.map((d) => CartProduct.fromDocument(d)).toList();
+    items = cartSnap.docs.map((d) => CartProduct.fromDocument(d)..addListener(_onItemUpdated)).toList();
   }
 
   void addToCart(Product product){
@@ -36,9 +36,20 @@ class CartManager{
       e.quantity++;
     }catch(e) {
       final cartProduct = CartProduct.fromProduct(product);
+      cartProduct.addListener(_onItemUpdated);
       items.add(cartProduct);
       usuario.cartReference.add(cartProduct.toCartItemMap());
     }
+  }
+
+  void _onItemUpdated(){
+    for(final cartProduct in items){
+      _updateCartProduct(cartProduct);
+    }
+  }
+
+  void _updateCartProduct(CartProduct cartProduct){
+    usuario.cartReference.doc(cartProduct.id).update(cartProduct.toCartItemMap());
   }
 
 }
