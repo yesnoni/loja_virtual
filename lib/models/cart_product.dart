@@ -18,7 +18,11 @@ class CartProduct extends ChangeNotifier{
     size = document['size'] as String;
 
     firestore.doc('products/$productId').get().then(
-            (doc) => product = Product.fromDocument(doc));
+            (doc) {
+              product = Product.fromDocument(doc);
+              notifyListeners();
+            }
+    );
   }
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -39,6 +43,8 @@ class CartProduct extends ChangeNotifier{
     if(product == null) return 0;
     return itemSize?.price ?? 0;
   }
+
+  num get totalPrice => unitPrice * quantity;
 
   Map<String, dynamic> toCartItemMap(){
     return{
@@ -61,5 +67,13 @@ class CartProduct extends ChangeNotifier{
     quantity--;
     notifyListeners();
   }
+
+  bool get hasStock{
+    final size = itemSize;
+    if(size == null) return false;
+    return size.stock >= quantity;
+  }
+
+
 
 }
