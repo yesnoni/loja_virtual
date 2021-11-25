@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loja_virtual/models/product.dart';
@@ -43,6 +45,15 @@ class ProductManager extends ChangeNotifier{
     allProducts = snapProducts.docs.map((d) => Product.fromDocument(d)).toList();
 
     notifyListeners();
+
+  }
+
+  Product findProductById(String id){
+    try {
+      return allProducts.firstWhere((p) => p.id == id);
+    }catch(e){
+      return null;
+    }
 
   }
 

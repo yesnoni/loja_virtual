@@ -5,6 +5,7 @@ import 'package:loja_virtual/models/section.dart';
 import 'package:provider/provider.dart';
 
 import 'components/section_list.dart';
+import 'components/section_staggered.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -38,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                     final List<Widget> children = homeManager.sections.map<Widget>(
                             (section){switch(section.type){
                               case 'List' : return SectionList(section);
-                              case 'Staggered' : return Container();
+                              case 'Staggered' : return SectionStaggered(section);
                               default : return Container();
                             }}).toList();
 

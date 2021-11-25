@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => UserManager(), lazy: false,),
         ChangeNotifierProvider(create: (_) => ProductManager(), lazy: false,),
-        Provider(create: (_) => HomeManager(), lazy: false,),
+        ChangeNotifierProvider(create: (_) => HomeManager(), lazy: false,),
         ChangeNotifierProxyProvider<UserManager, CartManager>(create: (_) => CartManager(), update: (_, userManager, cartManager) =>
         cartManager..updateUser(userManager),
           lazy: false,),
